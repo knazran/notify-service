@@ -3,14 +3,14 @@ import config from './src/config'
 
 const connectionOptions: ConnectionOptions = {
   cli: {
-    entitiesDir: 'src/packages/database/models',
-    migrationsDir: 'src/packages/database/migrations',
+    entitiesDir: 'src/database/models',
+    migrationsDir: 'src/database/migrations',
   },
   database: config.DB.NAME,
-  entities: ['src/packages/database/models/*.ts'],
+  entities: ['src/database/models/*.ts'],
   host: config.DB.HOST,
   logging: false,
-  migrations: ['src/packages/database/migrations/*.ts'],
+  migrations: ['src/database/migrations/*.ts'],
   password: config.DB.PASSWORD,
   port: config.DB.PORT,
   synchronize: false,

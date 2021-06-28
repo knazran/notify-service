@@ -1,10 +1,18 @@
-import * as fs from 'fs'
-import * as https from 'https'
 import config from '~/config'
-import { getConnection } from './packages/database'
-import server from './server'
+import { getConnection } from './database'
+import * as bodyParser from 'body-parser'
+// import * as compression from 'compression'
+import * as cors from 'cors'
+import * as express from 'express'
+// import { Request, Response } from 'express'
+import * as helmet from 'helmet'
+// import * as httpStatus from 'http-status'
+// import * as morgan from 'morgan'
 
-const PORT = config.SERVER_PORT || '3000'
+// import config from '~/config'
+
+import { handleErrors } from '~/packages/api/middlewares/error'
+import router from '~/packages/api/router'
 
 async function onStart(): Promise<any> {
   try {
@@ -16,14 +24,21 @@ async function onStart(): Promise<any> {
   }
 }
 
-const currentServer = https.createServer(
-  {
-    cert: fs.readFileSync(`${__dirname}/../server.cert`, 'utf8'),
-    key: fs.readFileSync(`${__dirname}/../server.key`, 'utf8'),
-  },
-  server,
-)
+const PORT = config.SERVER_PORT || '3000'
+const app = express()
 
-currentServer.listen(PORT, onStart)
+app.use(helmet())
+app.use(cors())
+// app.use(compression())
+app.use(bodyParser.json())
+
+app.use(router)
+
+app.use(handleErrors)
+
+app.listen(PORT, onStart)
+
 // tslint:disable-next-line:no-console
-console.log(`Server up and running on https://localhost:${PORT}`)
+console.log(`=================================`)
+console.log(`🚀 App listening on the port ${PORT}`)
+console.log(`=================================`)

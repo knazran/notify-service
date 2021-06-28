@@ -29,15 +29,12 @@ export class Endpoints extends BaseEntity {
   @ManyToOne(() => Merchants, (merchant) => merchant.endpoints)
   merchant: Merchants
 
-  @Column('boolean')
-  public is_deleted: string
-
-  @Column('timestamp with time zone')
+  @Column({ type: 'timestamp with time zone', default: () => "now()"})
   public created_at: Timestamp
 
-  @Column('timestamp with time zone')
+  @Column({ type: 'timestamp with time zone', default: () => "now()"})
   public updated_at: Timestamp
 
-  @Column('timestamp with time zone')
+  @Column({ type: 'timestamp with time zone', default: () => "now()", nullable: true})
   public deleted_at: Timestamp
 }

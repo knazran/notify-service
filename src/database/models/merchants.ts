@@ -14,12 +14,12 @@ export class Merchants extends BaseEntity {
   @OneToMany(() => Endpoints, (endpoint) => endpoint.merchant)
   endpoints: Endpoints[]
 
-  @Column('timestamp with time zone')
+  @Column({ type: 'timestamp with time zone', default: () => "now()"})
   public created_at: Timestamp
 
-  @Column('timestamp with time zone')
+  @Column({ type: 'timestamp with time zone', default: () => "now()"})
   public updated_at: Timestamp
 
-  @Column('timestamp with time zone')
+  @Column({ type: 'timestamp with time zone', default: () => "now()", nullable: true})
   public deleted_at: Timestamp
 }

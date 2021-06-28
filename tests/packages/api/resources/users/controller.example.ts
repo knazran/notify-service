@@ -1,4 +1,4 @@
-import { server } from '~/tests/config/helpers'
+import { server } from 'tests/config/helpers'
 
 describe('Users Controller', () => {
   it('should list Users', async () => {

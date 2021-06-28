@@ -25,15 +25,12 @@ export class Notifications extends BaseEntity {
   @ManyToOne(() => Endpoints, (endpoint) => endpoint.notifications)
   endpoint: Endpoints
 
-  @Column('boolean')
-  public is_deleted: boolean
-
-  @Column('timestamp with time zone')
+  @Column({ type: 'timestamp with time zone', default: () => "now()"})
   public created_at: Timestamp
 
-  @Column('timestamp with time zone')
+  @Column({ type: 'timestamp with time zone', default: () => "now()"})
   public updated_at: Timestamp
 
-  @Column('timestamp with time zone')
+  @Column({ type: 'timestamp with time zone', default: () => "now()", nullable: true})
   public deleted_at: Timestamp
 }
