@@ -6,9 +6,10 @@ const router = express.Router()
 const endpointController: EndpointsController = new EndpointsController()
 
 // router.use('/endpoints', EndpointsController)
-router.get('/endpoints', endpointController.getEndpoints)
+router.route('/endpoint').get(endpointController.getEndpoints)
 // router.post('/endpoints', endpointController.createEndpoint)
-router.get('/endpoints/:id', endpointController.getEndpointById)
+router.route('/endpoint').post(endpointController.createEndpoint)
+router.route('/endpoint/:id').get(endpointController.getEndpointById)
 
 
 export default router

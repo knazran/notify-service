@@ -17,22 +17,22 @@ class EndpointsService {
 
   public async findAll(): Promise<Endpoints[]> {
     const allEndpoints: Endpoints[] = await this.endpointsModel.createQueryBuilder('endpoint').take(10).getMany()
-    
+
     return allEndpoints
   }
 
-  public async findByMerchantID(merchantID: number): Promise<Endpoints> {
-    const merchantEndpoints: Endpoints[] = await this.endpointsModel.createQueryBuilder('endpoint')
-      .where("endpoints.id = :id", { id: merchantID })
+  public async findByMerchantID(merchantID: number): Promise<Endpoints[]> {
+    const merchantEndpoints: Endpoints[] = await this.endpointsModel
+      .createQueryBuilder('endpoint')
+      .where('endpoint.merchantID = :merchantID', { merchantID: merchantID })
       .getMany()
-    
+
     return merchantEndpoints
   }
 
   public async create(endpointData: CreateEndpointDto): Promise<Endpoints> {
-
-    await this.endpointsModel.create(endpointData)
-    return
+    const createdEndpoint: Endpoints = await this.endpointsModel.create(endpointData)
+    return createdEndpoint
   }
 
   public async update(): Promise<Endpoints> {

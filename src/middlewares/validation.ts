@@ -1,4 +1,4 @@
-import { validate } from 'class-validator'
+import { validate, ValidationError } from 'class-validator'
 
 export const validation = async <T>(arg: T): Promise<T> => {
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -6,7 +6,7 @@ export const validation = async <T>(arg: T): Promise<T> => {
 
   if (errors.length > 0) {
     // Need to change this
-    throw new Error('validation error')
+    throw new ValidationError()
   }
 
   return arg

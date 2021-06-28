@@ -1,5 +1,5 @@
 import Router from 'express-promise-router'
-import { list, login } from '~/packages/api/resources/users/controller'
+import { list, login } from '~/api/users/controller'
 
 const router = Router()
 

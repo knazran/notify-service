@@ -9,6 +9,8 @@
     "setup:local": "NODE_ENV=local npm run typeorm -- migration:run",
     "setup:test": "NODE_ENV=test npm run typeorm -- migration:run",
     "test": "NODE_ENV=test jest -i",
+    "test:unit": "NODE_ENV=test jest -i tests/unit/",
+    "test:integration": "NODE_ENV=test jest -i tests/integration/",
     "test:coverage": "NODE_ENV=test jest --coverage",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
