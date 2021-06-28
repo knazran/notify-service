@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import { Connection, createConnection } from 'typeorm'
+import { Connection, createConnection, getRepository } from 'typeorm'
 
 let connection: Connection
 
@@ -17,4 +17,14 @@ export async function closeConnection(): Promise<void> {
   if (connection) {
     return connection.close()
   }
+}
+
+export async function clear(): Promise<void> {
+  const connection = getConnection()
+  const entities = (await connection).entityMetadatas
+
+  entities.forEach(async (entity) => {
+    const repository = await getRepository(entity.name)
+    await repository.query(`DELETE FROM ${entity.tableName}`)
+  })
 }

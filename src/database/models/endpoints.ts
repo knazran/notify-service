@@ -1,7 +1,6 @@
 // tslint:disable:variable-name
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Timestamp, ManyToOne, OneToMany } from 'typeorm'
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Timestamp, OneToMany } from 'typeorm'
 import { EndpointStatus } from './enums'
-import { Merchants } from './merchants'
 import { Notifications } from './notifications'
 import config from '~/config'
 
@@ -10,11 +9,18 @@ export class Endpoints extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
+  // stub for merchantID
+  @Column('int')
+  public merchantID: number
+
   @Column('varchar')
   public url: string
 
   @Column('varchar')
   public event: string
+
+  @Column('varchar')
+  public secret: string
 
   @Column({
     type: 'enum',
@@ -25,9 +31,6 @@ export class Endpoints extends BaseEntity {
 
   @OneToMany(() => Notifications, (notification) => notification.endpoint)
   notifications: Notifications[]
-
-  @ManyToOne(() => Merchants, (merchant) => merchant.endpoints)
-  merchant: Merchants
 
   @Column({ type: 'timestamp with time zone', default: () => "now()"})
   public created_at: Timestamp

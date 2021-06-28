@@ -1,4 +1,4 @@
-import { Unauthorized } from '~/packages/api/helpers/exceptions/unauthorized'
+import { Unauthorized } from '~/helpers/exceptions/unauthorized'
 
 describe('APIException', () => {
   it('should generate an APIException', () => {

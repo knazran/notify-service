@@ -1,6 +1,7 @@
 import config from '~/config'
 import { getConnection } from './database'
 import * as bodyParser from 'body-parser'
+import { createConnection } from 'typeorm'
 // import * as compression from 'compression'
 import * as cors from 'cors'
 import * as express from 'express'
@@ -11,7 +12,7 @@ import * as helmet from 'helmet'
 
 // import config from '~/config'
 
-import { handleErrors } from '~/packages/api/middlewares/error'
+import { handleErrors } from '~/middlewares/error'
 import router from '~/packages/api/router'
 
 async function onStart(): Promise<any> {

@@ -4,9 +4,12 @@ import { Endpoints } from '~/database/models/endpoints'
 const url = faker.internet.url()
 
 describe('Endpoints Model', () => {
-  it('should add Merchant', async () => {
+  it('should add Endpoint', async () => {
     const model = new Endpoints()
     model.url = url
+    model.merchantID = 1
+    model.event = 'invoice'
+    model.secret = 'iWannaWorkAtXendit'
     await model.save()
 
     const endpoint = await Endpoints.createQueryBuilder()

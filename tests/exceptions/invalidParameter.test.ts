@@ -1,4 +1,4 @@
-import { InvalidParameter } from '~/packages/api/helpers/exceptions/invalidParameter'
+import { InvalidParameter } from '~/helpers/exceptions/invalidParameter'
 
 describe('APIException', () => {
   it('should generate an APIException', () => {

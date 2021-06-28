@@ -1,4 +1,4 @@
-import { APIException } from '~/packages/api/helpers/exceptions/APIException'
+import { APIException } from '~/helpers/exceptions/APIException'
 
 describe('APIException', () => {
   it('should generate an API Exception', () => {

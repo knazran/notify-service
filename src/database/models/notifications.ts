@@ -9,8 +9,8 @@ export class Notifications extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column('varchar')
-  public url: string
+  @Column('json')
+  public payload: Record<string, unknown>
 
   @Column('varchar')
   public event: string

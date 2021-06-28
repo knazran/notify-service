@@ -1,4 +1,4 @@
-import { BadRequest } from '~/packages/api/helpers/exceptions/badRequest'
+import { BadRequest } from '~/helpers/exceptions/badRequest'
 
 describe('APIException', () => {
   it('should generate an APIException', () => {

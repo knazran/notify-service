@@ -1,4 +1,4 @@
-import { NotFound } from '~/packages/api/helpers/exceptions/notFound'
+import { NotFound } from '~/helpers/exceptions/notFound'
 
 describe('APIException', () => {
   it('should generate an APIException', () => {

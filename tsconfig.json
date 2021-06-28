@@ -11,7 +11,14 @@
     "paths": {
       "~/*": [
         "src/*"
-      ]
+      ],
+      "@controllers/*": ["src/controllers/*"],
+      "@dtos/*": ["src/dtos/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@routes/*": ["src/routes/*"],
+      "@services/*": ["src/services/*"],
+      "@helpers/*": ["src/helpers/*"]
     },
     "sourceMap": true
   }

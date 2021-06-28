@@ -1,4 +1,4 @@
-import { Forbidden } from '~/packages/api/helpers/exceptions/forbidden'
+import { Forbidden } from '~/helpers/exceptions/forbidden'
 
 describe('APIException', () => {
   it('should generate an APIException', () => {

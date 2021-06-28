@@ -9,7 +9,7 @@ import * as helmet from 'helmet'
 
 // import config from '~/config'
 
-import { handleErrors } from '~/packages/api/middlewares/error'
+import { handleErrors } from '~/middlewares/error'
 import router from '~/packages/api/router'
 
 const app = express()
