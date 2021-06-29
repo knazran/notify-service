@@ -20,11 +20,11 @@ export async function closeConnection(): Promise<void> {
 }
 
 export async function clearConnectionData(): Promise<void> {
-  const connection = getConnection()
-  const entities = (await connection).entityMetadatas
+  const connection = await getConnection()
+  const entities = connection.entityMetadatas
 
   entities.forEach(async (entity) => {
-    const repository = await getRepository(entity.name)
+    const repository = getRepository(entity.name)
     await repository.query(`DELETE FROM ${entity.tableName}`)
   })
 }

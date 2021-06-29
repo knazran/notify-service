@@ -15,6 +15,9 @@ export class Notifications extends BaseEntity {
   @Column('varchar')
   public event: string
 
+  @Column('bool')
+  public is_test: boolean
+
   @Column({
     type: 'enum',
     enum: NotificationStatus,

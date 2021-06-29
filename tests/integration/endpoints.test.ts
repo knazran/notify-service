@@ -2,11 +2,11 @@
 import { server } from '../config/helpers'
 import { CreateEndpointDto } from '~/dto/CreateEndpoint.dto'
 import { Endpoints } from '~/database/models/endpoints'
-import { clearConnectionData } from '~/database'
+// import { clearConnectionData } from '~/database'
 
-beforeEach(async () => {
-  await clearConnectionData()
-})
+// beforeEach(async () => {
+//   await clearConnectionData()
+// })
 
 describe('GET /endpoint/', () => {
   it('Return all endpoints, limited to first 10', async () => {

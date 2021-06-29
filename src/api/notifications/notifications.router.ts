@@ -1,12 +1,10 @@
 import * as express from 'express'
-import { EndpointsController } from '~/api/endpoints/endpoints.controller'
+import { NotificationsController } from './notifications.controller'
 
 const router = express.Router()
-const endpointController: EndpointsController = new EndpointsController()
+const controller: NotificationsController = new NotificationsController()
 
-router.route('/').get(endpointController.getEndpoints)
-router.route('/').post(endpointController.createEndpoint)
-router.route('/:id').get(endpointController.getEndpointById)
-
+router.route('/').post(controller.publishNotification)
+router.route('/test').post(controller.testNotification)
 
 export default router

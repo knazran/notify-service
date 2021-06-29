@@ -21,6 +21,15 @@ class EndpointsService {
     return allEndpoints
   }
 
+  public async findByID(endpointID: string): Promise<Endpoints> {
+    const endpoint: Endpoints = await this.endpointsModel
+      .createQueryBuilder('endpoint')
+      .where('endpoint.id = :endpointID', { endpointID: endpointID })
+      .getOne()
+
+    return endpoint
+  }
+
   public async findByMerchantID(merchantID: number): Promise<Endpoints[]> {
     const merchantEndpoints: Endpoints[] = await this.endpointsModel
       .createQueryBuilder('endpoint')
