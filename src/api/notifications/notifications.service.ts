@@ -81,7 +81,6 @@ class NotificationsService {
       is_test: true,
       payload: endpointData.payload,
     }
-    console.log(createPayload)
     await this.notificationsModel.create(createPayload).save()
 
     // Notify Listeners
@@ -90,8 +89,9 @@ class NotificationsService {
       secret: endpoint.secret,
       payload: endpointData.payload,
     }
-    console.log(publishPayload)
     await this._notifySubscribers(endpoint.event, publishPayload)
+
+    // Listen for the status of the event
 
     return { status: 'ok', event: endpoint.event, endpointId: endpointData.endpointID, ...publishPayload }
   }
