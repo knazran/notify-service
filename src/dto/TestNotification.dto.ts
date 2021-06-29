@@ -1,4 +1,4 @@
-import { IsNumber, IsUrl, IsString } from 'class-validator'
+import { IsNumber } from 'class-validator'
 
 export class TestNotificationDto {
   @IsNumber()
