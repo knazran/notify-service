@@ -9,6 +9,8 @@ import { Notifications } from '~/database/models/notifications'
 import EndpointsService from '../endpoints/endpoints.service'
 import { Endpoints } from '~/database/models/endpoints'
 import { TestNotificationDto } from '~/dto/TestNotification.dto'
+import { notifyEndpoint } from '~/workers/notify.worker'
+import { jobDataDTO } from '~/dto/JobData.dto'
 // import { Connection, Repository } from 'typeorm';
 
 class NotificationsService {
@@ -81,7 +83,7 @@ class NotificationsService {
       is_test: true,
       payload: endpointData.payload,
     }
-    await this.notificationsModel.create(createPayload).save()
+    const createdNotification = await this.notificationsModel.create(createPayload).save()
 
     // Notify Listeners
     const publishPayload = {
@@ -91,9 +93,16 @@ class NotificationsService {
     }
     await this._notifySubscribers(endpoint.event, publishPayload)
 
-    // Listen for the status of the event
+    // auto trigger the notify worker
+    const jobData: jobDataDTO = {
+      id: createdNotification.id,
+      name: endpoint.event,
+      data: publishPayload
+    }
+    
+    const response = await notifyEndpoint(jobData)
 
-    return { status: 'ok', event: endpoint.event, endpointId: endpointData.endpointID, ...publishPayload }
+    return { status: response['status'], event: endpoint.event, endpointId: endpointData.endpointID, ...publishPayload }
   }
 
   private async _notifySubscribers(eventName: string, data: Record<string, unknown>) {
