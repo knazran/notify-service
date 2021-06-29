@@ -19,7 +19,7 @@ export async function closeConnection(): Promise<void> {
   }
 }
 
-export async function clear(): Promise<void> {
+export async function clearConnectionData(): Promise<void> {
   const connection = getConnection()
   const entities = (await connection).entityMetadatas
 

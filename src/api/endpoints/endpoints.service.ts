@@ -30,8 +30,18 @@ class EndpointsService {
     return merchantEndpoints
   }
 
+  public async findByMerchantIDAndEvent(merchantID: number, eventType: string): Promise<Endpoints[]> {
+    const merchantEndpoints: Endpoints[] = await this.endpointsModel
+      .createQueryBuilder('endpoint')
+      .where('endpoint.merchantID = :merchantID', { merchantID: merchantID })
+      .andWhere('endpoint.event = :eventType', { eventType: eventType })
+      .getMany()
+
+    return merchantEndpoints
+  }
+
   public async create(endpointData: CreateEndpointDto): Promise<Endpoints> {
-    const createdEndpoint: Endpoints = await this.endpointsModel.create(endpointData)
+    const createdEndpoint: Endpoints = await this.endpointsModel.create(endpointData).save()
     return createdEndpoint
   }
 

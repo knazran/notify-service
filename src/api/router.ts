@@ -1,15 +1,8 @@
 import * as express from 'express'
-import { EndpointsController } from '~/controllers/endpoints.controller'
-// import userRouter from '~/packages/api/resources/users/index'
+import endpointRoutes from '~/api/endpoints/endpoints.router'
 
 const router = express.Router()
-const endpointController: EndpointsController = new EndpointsController()
 
-// router.use('/endpoints', EndpointsController)
-router.route('/endpoint').get(endpointController.getEndpoints)
-// router.post('/endpoints', endpointController.createEndpoint)
-router.route('/endpoint').post(endpointController.createEndpoint)
-router.route('/endpoint/:id').get(endpointController.getEndpointById)
-
+router.use('/endpoint', endpointRoutes)
 
 export default router

@@ -1,4 +1,5 @@
 import * as faker from 'faker'
+
 import { Endpoints } from '~/database/models/endpoints'
 
 const url = faker.internet.url()

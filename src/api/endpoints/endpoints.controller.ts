@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 // import { CreateUserDto } from '@dtos/Endpoints.dto';
 import { getConnection } from '~/database'
 import { Endpoints } from '~/database/models/endpoints'
-import EndpointsService from '~/services/endpoints.service'
+import EndpointsService from '~/api/endpoints/endpoints.service'
 import { CreateEndpointDto } from '~/dto/CreateEndpoint.dto'
 import { validation } from '~/middlewares/validation'
 
@@ -38,7 +38,7 @@ export class EndpointsController {
       const createdEndpoint = await validation(endpointData)
       const endpointService = new EndpointsService(await getConnection())
       const createEndpoint: Endpoints = await endpointService.create(createdEndpoint)
-
+      console.log(createEndpoint)
       res.status(201).json({ data: createEndpoint, message: 'created' })
     } catch (error) {
       next(error)

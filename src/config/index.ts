@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   dotEnvSafe.config({
     allowEmptyValues: true,
-    example: path.resolve(__dirname, '../../.env.example'),
+    // example: path.resolve(__dirname, '../../.env.example'),
     path: path.resolve(process.cwd(), envPath),
   })
 }
